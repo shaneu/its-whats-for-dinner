@@ -1,0 +1,1 @@
+A simple recipe app using graphql, react, mongodb

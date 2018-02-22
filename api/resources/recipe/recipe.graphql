@@ -1,0 +1,27 @@
+type Recipe {
+  id: ID!
+  name: String!
+  description: String
+  ingredients: [Ingredients]
+  instructions: [String]
+  tags: [String]
+  createdAt: String!
+  updatedAt: String!
+}
+
+type Ingredients {
+  ingredient: String
+  ammount: String
+}
+
+# input NewRecipe {
+#   name: String!
+#   description: String
+#   ingredients: [Ingredients]
+#   instructions: [String]
+#   tags: [String]
+# }
+
+type Query {
+  getAllRecipes: [Recipe]!
+}
