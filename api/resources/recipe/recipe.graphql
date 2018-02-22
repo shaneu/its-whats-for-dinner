@@ -23,5 +23,6 @@ type Ingredients {
 # }
 
 type Query {
-  getAllRecipes: [Recipe]!
+  allRecipes: [Recipe]!
+  Recipe(name: String): Recipe
 }

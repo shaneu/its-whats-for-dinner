@@ -1,4 +1,4 @@
-import model, { Schema } from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 
 const recipeSchema = Schema(
   {
@@ -15,6 +15,8 @@ const recipeSchema = Schema(
   { timestamps: true }
 );
 
-const Recipe = model('recipe', recipeSchema);
+recipeSchema.index({ name: 1 });
+
+const Recipe = mongoose.model('recipe', recipeSchema);
 
 export default Recipe;

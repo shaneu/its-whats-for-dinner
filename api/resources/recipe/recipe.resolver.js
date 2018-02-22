@@ -1,22 +1,20 @@
-// import Recipe from './recipe.model';
+import Recipe from './recipe.model';
 
-const getAllRecipes = () => [
-  {
-    id: 7,
-    name: 'Spaghetti',
-    description: 'Good pasta',
-    ingredients: { ingredient: 'Pasta', ammount: '1 cup' },
-    instructions: ['Make pasta', 'Add sauce', 'Serve'],
-    tags: ['Pasta', ['Good']],
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  },
-];
-// const getRecipe = () => {};
+const allRecipes = () => Recipe.find({}).exec();
+
+const getRecipe = async (_, { name }) => {
+  const regEx = new RegExp(name, 'i');
+  const [recipe] = await Recipe.find({
+    name: { $regex: regEx },
+  }).exec();
+  return recipe;
+};
+
 const updateRecipe = () => {};
 
 export default {
   Query: {
-    getAllRecipes,
+    allRecipes,
+    Recipe: getRecipe,
   },
 };
