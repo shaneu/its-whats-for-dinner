@@ -1,6 +1,5 @@
 require('babel-register');
 require('dotenv').config();
-const mongoose = require('mongoose');
 const Recipe = require('../resources/recipe/recipe.model').default;
 const connect = require('./').default;
 
@@ -42,7 +41,7 @@ const recipes = [
 const seedDB = async () => {
   try {
     const db = await connect();
-    db.connection.dropDatabase();
+    await db.connection.dropDatabase();
     await Recipe.create(recipes);
     console.log('*----------seed successful----------*'); // eslint-disable-line no-console
     db.connection.close();

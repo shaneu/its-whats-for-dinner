@@ -1,28 +1,50 @@
 type Recipe {
   id: ID!
   name: String!
-  description: String
-  ingredients: [Ingredients]
-  instructions: [String]
+  description: String!
+  ingredients: [Ingredients]!
+  instructions: [String]!
   tags: [String]
   createdAt: String!
   updatedAt: String!
 }
 
 type Ingredients {
+  id: ID!
+  ingredient: String!
+  ammount: String!
+}
+
+input UpdatedRecipe {
+  name: String
+  description: String
+  ingredients: [Ingredient]
+  instructions: [String]
+  tags: [String]
+}
+
+input NewRecipe {
+  name: String!
+  description: String!
+  ingredients: [Ingredient]!
+  instructions: [String]!
+  tags: [String]
+}
+
+input Ingredient {
+  id: ID
   ingredient: String
   ammount: String
 }
 
-# input NewRecipe {
-#   name: String!
-#   description: String
-#   ingredients: [Ingredients]
-#   instructions: [String]
-#   tags: [String]
-# }
-
 type Query {
-  allRecipes: [Recipe]!
-  Recipe(name: String): Recipe
+  getAllRecipes: [Recipe]!
+  getRecipeByName(name: String!): Recipe!
+  Recipe(id: ID!): Recipe!
+}
+
+type Mutation {
+  createRecipe(input: UpdatedRecipe!): Recipe!
+  updateRecipe(id: ID! input: UpdatedRecipe!): Recipe!
+  deleteRecipe(input: ID!): Recipe! 
 }

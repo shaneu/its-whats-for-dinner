@@ -5,8 +5,10 @@ import { recipeType, recipeResolvers } from './resources/recipe';
 const baseSchema = `
   schema {
     query: Query
+    mutation: Mutation
   }
 `;
+
 const schema = makeExecutableSchema({
   typeDefs: [baseSchema, recipeType],
   resolvers: recipeResolvers,
